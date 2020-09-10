@@ -31,10 +31,10 @@ jobs:
         echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF//[-_]/} | cut -c-10)"
 
     - name: deploy PR preview
-      uses: yinlinchen/amplify-preview-actions@0.1
+      uses: yinlinchen/amplify-preview-actions@0.2
       with:
         branch_name: ${{ steps.setenvname.outputs.setbranchname }}
-        aws_cli_version: '1.18.135'
+        amplify_command: deploy
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

@@ -26,6 +26,11 @@ if [ -z "$1" ] ; then
   exit 1
 fi
 
+if [ -z "$2" ] ; then
+  echo "You must provide amplify_command input parameter in order to deploy"
+  exit 1
+fi
+
 aws configure --profile amplify-preview-actions <<-EOF > /dev/null 2>&1
 ${AWS_ACCESS_KEY_ID}
 ${AWS_SECRET_ACCESS_KEY}
@@ -33,12 +38,27 @@ ${AWS_REGION}
 text
 EOF
 
-sh -c "aws amplify create-branch --app-id=${AmplifyAppId} --branch-name=$1  \
+case $2 in
+
+  deploy)
+    sh -c "aws amplify create-branch --app-id=${AmplifyAppId} --branch-name=$1  \
               --backend-environment-arn=${BackendEnvARN} --region=${AWS_REGION}"
 
-sleep 10
+    sleep 10
 
-sh -c "aws amplify start-job --app-id=${AmplifyAppId} --branch-name=$1 --job-type=RELEASE --region=${AWS_REGION}"
+    sh -c "aws amplify start-job --app-id=${AmplifyAppId} --branch-name=$1 --job-type=RELEASE --region=${AWS_REGION}"
+    ;;
+
+  delete)
+    sh -c "aws amplify delete-branch --app-id=${AmplifyAppId} --branch-name=$1 --region=${AWS_REGION}"
+    ;;
+
+  *)
+    echo "amplify command $2 is invalid or not supported"
+    exit 1
+    ;;
+
+esac
 
 aws configure --profile amplify-preview-actions <<-EOF > /dev/null 2>&1
 null

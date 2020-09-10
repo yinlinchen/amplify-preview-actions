@@ -4,15 +4,16 @@ inputs:
   branch_name:
     description: 'GitHub branch name to deploy'
     required: true
-  aws_cli_version:
-    description: 'version of AWS Cli to use'
-    required: false
+  amplify_command:
+    description: 'amplify command: SUPPORTED: [deploy, delete]'
+    required: true
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.branch_name }}
-    - ${{ inputs.aws_cli_version }}
+    - ${{ inputs.amplify_command }}
 branding:
   icon: 'git-commit'
   color: 'blue'
