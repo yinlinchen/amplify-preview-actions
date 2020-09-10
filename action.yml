@@ -1,0 +1,18 @@
+name: 'amplify-preview-actions'
+description: 'This action builds and deploys your AWS Amplify pull request preview for public repository'
+inputs:
+  branch_name:
+    description: 'GitHub branch name to deploy'
+    required: true
+  aws_cli_version:
+    description: 'version of AWS Cli to use'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.branch_name }}
+    - ${{ inputs.aws_cli_version }}
+branding:
+  icon: 'git-commit'
+  color: 'blue'
