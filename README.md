@@ -9,7 +9,7 @@ AWS Amplify pull request preview currently only supports private github reposito
 ## Getting Started
 You can include the action in your workflow as `actions/amplify-preview-actions@0.1`.
 
-Example:
+* Example: Deploy a PR preview after a reviewer is assigned.
 
 ```yaml
 name: 'Amplify PR Preview'
@@ -43,3 +43,11 @@ jobs:
         AWS_REGION: 'us-east-1'
 ```
 
+* Advanced configuration: Deploy a PR preview after a reviewer is assigned and the PR is labeled with ```Ready for review```
+
+```
+jobs:
+  deploy:
+    if: contains(github.event.pull_request.labels.*.name, 'Ready for review')
+    runs-on: ubuntu-latest
+```
