@@ -5,7 +5,6 @@ LABEL "com.github.actions.description"="This action deploys your AWS Amplify pul
 LABEL "com.github.actions.icon"="git-commit"
 LABEL "com.github.actions.color"="blue"
 
-LABEL version="0.2"
 LABEL "repository"="https://github.com/yinlinchen/amplify-preview-actions.git"
 LABEL "homepage"="https://github.com/yinlinchen/amplify-preview-actions"
 LABEL maintainer="Yinlin Chen <ylchen@vt.edu>"
