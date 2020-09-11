@@ -85,9 +85,7 @@ Note: All scenarios are assume that the PR is labeled with ```Ready for review``
 
 or
 
-* A reviewer finish reviews a PR, does not approve it and the developer closes the PR. The PR preview branch is deleted from the Amplify console app page.
-
-[Scenario 3](examples.md#scenario-3)
+* A reviewer finish reviews a PR, does not approve it and the developer closes the PR. The PR preview branch is deleted from the Amplify console app page. [Scenario 3](examples.md#scenario-3)
 
 ## IAM Roles & MFA for AWS Amplify
 * Please see Amplify [IAM Policy](https://docs.amplify.aws/cli/usage/iam#n3-set-up-the-local-development-environment-dev-corp) and [IAM Roles & MFA](https://docs.amplify.aws/cli/usage/iam-roles-mfa) about how to create an AWS Credentials for AWS Amplify
