@@ -1,6 +1,6 @@
 ## Configuration Examples
 
-Note: All scenarios are assume that the PR is labeled with Ready for review and a reviewer is assigned.
+Note: All scenarios are assume that the PR is labeled with `Ready for review` and a reviewer is assigned.
 
 ### Scenario 1:
 A developer submits a PR for review using the existing backend environment. A new PR review branch is deployed to the Amplify console App page (not the Previews page)
