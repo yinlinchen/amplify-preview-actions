@@ -75,17 +75,19 @@ Deletes a branch for an Amplify app.
 Note: All scenarios are assume that the PR is labeled with ```Ready for review``` and a reviewer is assigned.
 
 ### Scenario 1:
-* A developer submits a PR for review using the existing backend environment. A new PR review branch is deployed to the Amplify console app page (not the Previews page) [Scenario 1]()
+* A developer submits a PR for review using the existing backend environment. A new PR review branch is deployed to the Amplify console app page (not the Previews page) [Scenario 1](examples.md#scenario-1)
 
 ### Scenario 2:
-* A developer submits a PR for review using a new backend environment. A new PR review branch using a new backend environment is deployed to the Amplify console app page (not the Previews page)
+* A developer submits a PR for review using a new backend environment. A new PR review branch using a new backend environment is deployed to the Amplify console app page (not the Previews page) [Scenario 2](examples.md#scenario-2)
 
 ### Scenario 3:
 * A reviewer finish reviews a PR, approves it, and merges it into the codebase. The PR preview branch is deleted from the Amplify console app page.
 
-### Scenario 4:
+or
+
 * A reviewer finish reviews a PR, does not approve it and the developer closes the PR. The PR preview branch is deleted from the Amplify console app page.
 
+[Scenario 3](examples.md#scenario-3)
 
 ## IAM Roles & MFA for AWS Amplify
 * Please see Amplify [IAM Policy](https://docs.amplify.aws/cli/usage/iam#n3-set-up-the-local-development-environment-dev-corp) and [IAM Roles & MFA](https://docs.amplify.aws/cli/usage/iam-roles-mfa) about how to create an AWS Credentials for AWS Amplify
