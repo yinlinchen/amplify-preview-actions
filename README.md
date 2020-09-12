@@ -4,10 +4,10 @@
 [![LICENSE](https://img.shields.io/github/license/yinlinchen/amplify-preview-actions)](https://github.com/yinlinchen/amplify-preview-actions/blob/master/LICENSE)
 [![ISSUES](https://img.shields.io/github/issues/yinlinchen/amplify-preview-actions)](https://github.com/yinlinchen/amplify-preview-actions/issues)
 
-AWS Amplify pull request preview currently only supports private github repositoy. This action deploys your AWS Amplify pull request preview for your public repository.
+AWS Amplify Pull-Request Previews currently only supports private GitHub repository. This GitHub action enable the ability to deploys AWS Amplify Pull-Request Previews for your open source and public GitHub repository.
 
 ## Getting Started
-You can include the action in your workflow as `actions/amplify-preview-actions@0.2`.
+You can include the action in your workflow as `actions/amplify-preview-actions@master`.
 
 ### Basic ```workflow.yml``` Example
 Deploy a PR preview branch to the Amplify console App page (not the Previews page) after a reviewer is assigned.
@@ -33,7 +33,7 @@ jobs:
         echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF} | cut -c-10)"
 
     - name: deploy PR preview
-      uses: yinlinchen/amplify-preview-actions@0.2
+      uses: yinlinchen/amplify-preview-actions@master
       with:
         branch_name: ${{ steps.setenvname.outputs.setbranchname }}
         amplify_command: deploy
@@ -89,8 +89,6 @@ or
 
 ## IAM Roles & MFA for AWS Amplify
 * Please see Amplify [IAM Policy](https://docs.amplify.aws/cli/usage/iam#n3-set-up-the-local-development-environment-dev-corp) and [IAM Roles & MFA](https://docs.amplify.aws/cli/usage/iam-roles-mfa) about how to create an AWS Credentials for AWS Amplify
-
-
 
 ## License
 
