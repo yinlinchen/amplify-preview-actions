@@ -7,6 +7,10 @@ inputs:
   amplify_command:
     description: 'amplify command: SUPPORTED: [deploy, delete]'
     required: true
+  comments_url:
+    description: 'Github comments url'
+    default: "${{ github.event.pull_request.comments_url }}"
+    required: false
 
 runs:
   using: 'docker'
@@ -14,6 +18,8 @@ runs:
   args:
     - ${{ inputs.branch_name }}
     - ${{ inputs.amplify_command }}
+    - ${{ inputs.comments_url }}
+
 branding:
   icon: 'git-pull-request'
   color: 'blue'

@@ -32,7 +32,7 @@ jobs:
       id: setenvname
       run: |
         # use GITHUB_HEAD_REF that is set to PR source branch
-        echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF} | cut -c-10)"
+        echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF})"
 
     - name: deploy PR preview
       uses: yinlinchen/amplify-preview-actions@master
@@ -42,6 +42,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         AmplifyAppId: ${{ secrets.AmplifyAppId }}
         BackendEnvARN: ${{ secrets.BackendEnvARN }}
         AWS_REGION: 'us-east-1'
@@ -49,7 +50,7 @@ jobs:
 
 ### Configuration
 
-The following settings must be passed as environment variables as shown in the example. Sensitive information, especially `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`, should be [set as encrypted secrets](https://help.github.com/en/articles/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables) — otherwise, they'll be public to anyone browsing your repository's source code and CI logs.
+The following settings must be passed as environment variables as shown in the example. Sensitive information, especially `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`, should be [set as encrypted secrets](https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) — otherwise, they'll be public to anyone browsing your repository's source code and CI logs.
 
 | Key | Value | Suggested Type | Required | Default |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -58,6 +59,7 @@ The following settings must be passed as environment variables as shown in the e
 | `AWS_REGION` | The region where you created your bucket. Set to `us-east-1` by default. [Full list of regions here.](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) | `env` | **Yes** | `us-east-1` |
 | `AmplifyAppId` | The unique ID for an Amplify app. For example, `d6a88fjhifqlks` | `secret env` | **Yes** | N/A |
 | `BackendEnvARN` | The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app. | `secret env` | **Yes** | N/A |
+| `GITHUB_TOKEN` | The GITHUB_TOKEN, required to post the comment with the preview URL | `github env` | **Yes** | N/A |
 | `NewBackendEnvARN` | The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app. | `secret env` | No | N/A |
 
 ## Inputs

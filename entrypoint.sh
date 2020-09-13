@@ -2,7 +2,11 @@
 
 set -e
 
-if [ -z "$AWS_ACCESS_KEY_ID" ] && [ -z "$AWS_SECRET_ACCESS_KEY" ] ; then
+BRANCH_NAME=$1
+AMPLIFY_COMMAND=$2
+COMMENT_URL=$3
+
+if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ] ; then
   echo "You must provide the action with both AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables in order to deploy"
   exit 1
 fi
@@ -21,12 +25,12 @@ if [ -z "$BackendEnvARN" ] ; then
   exit 1
 fi
 
-if [ -z "$1" ] ; then
+if [ -z "$BRANCH_NAME" ] ; then
   echo "You must provide branch name input parameter in order to deploy"
   exit 1
 fi
 
-if [ -z "$2" ] ; then
+if [ -z "$AMPLIFY_COMMAND" ] ; then
   echo "You must provide amplify_command input parameter in order to deploy"
   exit 1
 fi
@@ -38,23 +42,23 @@ ${AWS_REGION}
 text
 EOF
 
-case $2 in
+case $AMPLIFY_COMMAND in
 
   deploy)
-    sh -c "aws amplify create-branch --app-id=${AmplifyAppId} --branch-name=$1  \
+    sh -c "aws amplify create-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME  \
               --backend-environment-arn=${BackendEnvARN} --region=${AWS_REGION}"
 
     sleep 10
 
-    sh -c "aws amplify start-job --app-id=${AmplifyAppId} --branch-name=$1 --job-type=RELEASE --region=${AWS_REGION}"
+    sh -c "aws amplify start-job --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --job-type=RELEASE --region=${AWS_REGION}"
     ;;
 
   delete)
-    sh -c "aws amplify delete-branch --app-id=${AmplifyAppId} --branch-name=$1 --region=${AWS_REGION}"
+    sh -c "aws amplify delete-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --region=${AWS_REGION}"
     ;;
 
   *)
-    echo "amplify command $2 is invalid or not supported"
+    echo "amplify command $AMPLIFY_COMMAND is invalid or not supported"
     exit 1
     ;;
 
@@ -66,3 +70,10 @@ null
 null
 text
 EOF
+
+if [ -z "$GITHUB_TOKEN" ] ; then
+  echo "Skipping comment as GITHUB_TOKEN not provided"
+else 
+  SUBDOMAIN_NAME=$(echo $BRANCH_NAME | sed 's/[^a-zA-Z0-9-]/-/')
+  curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Preview branch generated at https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com"'" }'
+fi
