@@ -26,7 +26,7 @@ jobs:
 
     - name: deploy PR preview with current backend env
       if: ${{ !contains(github.event.pull_request.labels.*.name, 'newbackendenv') }}
-      uses: yinlinchen/amplify-preview-actions@0.2
+      uses: yinlinchen/amplify-preview-actions@master
       with:
         branch_name: ${{ steps.setenvname.outputs.setbranchname }}
         amplify_command: deploy
@@ -61,7 +61,7 @@ jobs:
         echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF} | cut -c-10)"
     - name: deploy PR preview with another(new) backend env
       if: contains(github.event.pull_request.labels.*.name, 'newbackendenv')
-      uses: yinlinchen/amplify-preview-actions@0.2
+      uses: yinlinchen/amplify-preview-actions@master
       with:
         branch_name: ${{ steps.setenvname.outputs.setbranchname }}
         amplify_command: deploy
@@ -101,7 +101,7 @@ jobs:
         # use GITHUB_HEAD_REF that is set to PR source branch
         echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF} | cut -c-10)"
     - name: cleanup PR preview branch
-      uses: yinlinchen/amplify-preview-actions@0.2
+      uses: yinlinchen/amplify-preview-actions@master
       with:
         branch_name: ${{ steps.setenvname.outputs.setbranchname }}
         amplify_command: delete
