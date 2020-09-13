@@ -6,7 +6,7 @@
 
 AWS Amplify Pull-Request Previews currently only supports private GitHub repository. This `amplify-preview-actions` GitHub action enables the ability to deploy AWS Amplify Pull-Request Previews for your open source and public GitHub repository.
 
-With this `amplify-preview-actions` GitHub action setup, you can define your own rule to deploy the Pull-Request branch to the AWS Amplify console app page for a preview. For example, you can setup a rule only a pull request is labeled with `Ready for review` and is assigned to a reviewer; and clean up the previews after the pull request is merged or closed.
+With this `amplify-preview-actions` GitHub action, you can define your own rule to deploy the Pull-Request branch to the AWS Amplify console app page for a preview. For example, you can setup a rule only a pull request is labeled with `Ready for review` and is assigned to a reviewer; and clean up the previews after the pull request is merged or closed.
 
 ## Getting Started
 You can include the action in your workflow as `actions/amplify-preview-actions@master`.
