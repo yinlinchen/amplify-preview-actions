@@ -15,5 +15,5 @@ runs:
     - ${{ inputs.branch_name }}
     - ${{ inputs.amplify_command }}
 branding:
-  icon: 'git-commit'
+  icon: 'git-pull-request'
   color: 'blue'
