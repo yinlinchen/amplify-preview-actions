@@ -4,7 +4,9 @@
 [![LICENSE](https://img.shields.io/github/license/yinlinchen/amplify-preview-actions)](https://github.com/yinlinchen/amplify-preview-actions/blob/master/LICENSE)
 [![ISSUES](https://img.shields.io/github/issues/yinlinchen/amplify-preview-actions)](https://github.com/yinlinchen/amplify-preview-actions/issues)
 
-AWS Amplify Pull-Request Previews currently only supports private GitHub repository. This GitHub action enable the ability to deploys AWS Amplify Pull-Request Previews for your open source and public GitHub repository.
+AWS Amplify Pull-Request Previews currently only supports private GitHub repository. This `amplify-preview-actions` GitHub action enables the ability to deploy AWS Amplify Pull-Request Previews for your open source and public GitHub repository.
+
+With this `amplify-preview-actions` GitHub action setup, you can define your own rule to deploy the Pull-Request branch to the AWS Amplify console app page for a preview. For example, you can setup a rule only a pull request is labeled with `Ready for review` and is assigned to a reviewer; and clean up the previews after the pull request is merged or closed.
 
 ## Getting Started
 You can include the action in your workflow as `actions/amplify-preview-actions@master`.
@@ -86,6 +88,9 @@ Note: All scenarios are assume that the PR is labeled with ```Ready for review``
 or
 
 * A reviewer finish reviews a PR, does not approve it and the developer closes the PR. The PR preview branch is deleted from the Amplify console app page. [Scenario 3](examples.md#scenario-3)
+
+### Live Demo
+* You can see a complete setup with above scenarios in [Amplify workshop bookapp demo](https://github.com/yinlinchen/bookapp) and [.github/workflows](https://github.com/yinlinchen/bookapp/tree/master/.github/workflows)
 
 <img src="demo.gif" width="80%"/>
 
