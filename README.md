@@ -32,7 +32,7 @@ jobs:
       id: setenvname
       run: |
         # use GITHUB_HEAD_REF that is set to PR source branch
-        echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF} | cut -c-10)"
+        echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF})"
 
     - name: deploy PR preview
       uses: yinlinchen/amplify-preview-actions@master
