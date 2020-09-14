@@ -42,6 +42,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         AmplifyAppId: ${{ secrets.AmplifyAppId }}
         BackendEnvARN: ${{ secrets.BackendEnvARN }}
         AWS_REGION: 'us-east-1'
@@ -58,6 +59,7 @@ The following settings must be passed as environment variables as shown in the e
 | `AWS_REGION` | The region where you created your bucket. Set to `us-east-1` by default. [Full list of regions here.](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) | `env` | **Yes** | `us-east-1` |
 | `AmplifyAppId` | The unique ID for an Amplify app. For example, `d6a88fjhifqlks` | `secret env` | **Yes** | N/A |
 | `BackendEnvARN` | The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app. | `secret env` | **Yes** | N/A |
+| `GITHUB_TOKEN` | The GITHUB_TOKEN, should be supplied if a comment with the preview URL is to be posted on the PR | `github env` | No | N/A |
 | `NewBackendEnvARN` | The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app. | `secret env` | No | N/A |
 
 ## Inputs
