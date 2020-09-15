@@ -96,8 +96,34 @@ or
 
 <img src="demo.gif" width="80%"/>
 
-## IAM Roles & MFA for AWS Amplify
-* Please see Amplify [IAM Policy](https://docs.amplify.aws/cli/usage/iam#n3-set-up-the-local-development-environment-dev-corp) and [IAM Roles & MFA](https://docs.amplify.aws/cli/usage/iam-roles-mfa) about how to create an AWS Credentials for AWS Amplify
+## AWS access keys & IAM Policy
+* Minimal necessary permissions IAM policy
+  ```
+  {
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Sid": "VisualEditor1",
+              "Effect": "Allow",
+              "Action": "amplify:StartJob",
+              "Resource": "arn:aws:amplify:${Region}:${Account}:apps/{AppId}/branches/*/jobs/*"
+          },
+          {
+              "Sid": "VisualEditor2",
+              "Effect": "Allow",
+              "Action": [
+                  "amplify:DeleteBranch",
+                  "amplify:CreateBranch"
+              ],
+              "Resource": "arn:aws:amplify:${Region}:${Account}:apps/{AppId}/branches/*"
+          }
+      ]
+  }
+  ```
+
+* [How do I create an AWS access key?](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/)
+* Amplify [IAM Policy](https://docs.amplify.aws/cli/usage/iam#n3-set-up-the-local-development-environment-dev-corp)
+* Amplify [IAM Roles & MFA](https://docs.amplify.aws/cli/usage/iam-roles-mfa)
 
 ## License
 
