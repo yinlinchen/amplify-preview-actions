@@ -62,6 +62,44 @@ The following settings must be passed as environment variables as shown in the e
 | `GITHUB_TOKEN` | The `GITHUB_TOKEN`, should be supplied if a comment with the preview URL is to be posted on the PR.  GitHub automatically creates a `GITHUB_TOKEN` secret to use in your workflow. You can use it directly, see [About the GITHUB_TOKEN secret](https://docs.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token#about-the-github_token-secret) | `github env` | No | N/A |
 | `NewBackendEnvARN` | The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app. | `secret env` | No | N/A |
 
+#### AWS_SECRET_ACCESS_KEY & AWS_ACCESS_KEY_ID
+<details>
+  <summary>Click to expand...</summary>
+
+To create these, you'll need to go to [IAM Console](https://console.aws.amazon.com/iam/home)
+
+1. Click on `Users` > `Add User`
+2. Click `Enable Programmatic Access`
+![image](https://user-images.githubusercontent.com/5545980/93388180-28c69900-f81f-11ea-9ab8-69b04c56f81d.png)
+3. On the next screen click `Attach Existing Policies directly` > `Create Policy`
+![image](https://user-images.githubusercontent.com/5545980/93388246-45fb6780-f81f-11ea-9415-7b484a168ae3.png)
+4. Create a policy called `AmplifyPreviewURL` based on the policy shown here: [AWS access keys & IAM Policy](https://github.com/yinlinchen/amplify-preview-actions#aws-access-keys--iam-policy)
+5. Create the user. Copy the `AWS_SECRET_ACCESS_KEY` and `AWS_ACCESS_KEY_ID` to 
+</details>
+
+#### AmplifyAppId
+<details>
+  <summary>Click to expand...</summary>
+  
+  To get the Amplify App ID, go to the [Amplify Console](https://console.aws.amazon.com/amplify/home).
+  
+  1. Navigate to the application and click **General**
+  2. Copy the id from the `App Arn`, it'll look something like `de63t2jjt7llc`
+</details>
+
+#### BackendEnvARN
+
+<details>
+  <summary>Click to expand...</summary>
+  
+  Run:
+  ```bash
+  aws amplify list-backend-environments --app-id=[app_id]
+  ```
+</details>
+
+
+
 ## Inputs
 
 ### amplify_command
