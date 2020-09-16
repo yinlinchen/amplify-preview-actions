@@ -33,9 +33,9 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AmplifyAppId: ${{ secrets.AmplifyAppId }}
+        AmplifyAppId: ${{ secrets.AMPLIFYAPPID }}
         AWS_REGION: 'us-east-1'
-        BackendEnvARN: ${{ secrets.BackendEnvARN }}
+        BackendEnvARN: ${{ secrets.BACKENDENVARN }}
 ```
 
 ### Scenario 2:
@@ -68,9 +68,9 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AmplifyAppId: ${{ secrets.AmplifyAppId }}
+        AmplifyAppId: ${{ secrets.AMPLIFYAPPID }}
         AWS_REGION: 'us-east-1'
-        BackendEnvARN: ${{ secrets.NewBackendEnvARN }}
+        BackendEnvARN: ${{ secrets.NEWBACKENDENVARN }}
 ```
 
 ### Scenario 3:
@@ -108,7 +108,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AmplifyAppId: ${{ secrets.AmplifyAppId }}
-        BackendEnvARN: ${{ secrets.BackendEnvARN }}
+        AmplifyAppId: ${{ secrets.AMPLIFYAPPID }}
+        BackendEnvARN: ${{ secrets.BACKENDENVARN }}
         AWS_REGION: 'us-east-1'
 ```
