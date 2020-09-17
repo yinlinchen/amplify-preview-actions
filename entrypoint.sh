@@ -20,9 +20,10 @@ if [ -z "$AmplifyAppId" ] ; then
   exit 1
 fi
 
-if [ -z "$BackendEnvARN" ] ; then
-  echo "You must provide BackendEnvARN environment variable in order to deploy"
-  exit 1
+if [[ ! -z "$BackendEnvARN" ]] ; then
+  backend_env_arg="--backend-environment-arn=${BackendEnvARN}"
+else
+  backend_env_arg=""
 fi
 
 if [ -z "$BRANCH_NAME" ] ; then
@@ -46,7 +47,7 @@ case $AMPLIFY_COMMAND in
 
   deploy)
     sh -c "aws amplify create-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME  \
-              --backend-environment-arn=${BackendEnvARN} --region=${AWS_REGION}"
+              ${backend_env_arg} --region=${AWS_REGION}"
 
     sleep 10
 
