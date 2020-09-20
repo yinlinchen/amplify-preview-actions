@@ -19,7 +19,7 @@ Place in a `.yml` file such as this one in your `.github/workflows` folder. [Ref
 ```yaml
 name: 'Amplify PR Preview'
 on:
-  pull_request:
+  pull_request_target:
     types: [review_requested]
 
 jobs:

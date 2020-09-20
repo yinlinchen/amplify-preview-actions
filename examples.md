@@ -8,7 +8,7 @@ A developer submits a PR for review using the existing backend environment. A ne
 ```
 name: 'Amplify PR Preview'
 on:
-  pull_request:
+  pull_request_target:
     types: [review_requested]
 
 jobs:
@@ -44,7 +44,7 @@ A developer submits a PR for review using a new backend environment. A new PR re
 ```
 name: 'Amplify PR Preview'
 on:
-  pull_request:
+  pull_request_target:
     types: [review_requested]
 
 jobs:
@@ -83,7 +83,7 @@ A reviewer finish reviews a PR, does not approve it and the developer closes the
 ```
 name: 'Amplify PR Closed'
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - dev
     types: [closed]
