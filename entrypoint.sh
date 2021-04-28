@@ -47,7 +47,7 @@ case $AMPLIFY_COMMAND in
 
   deploy)
     branch_exists=$(aws amplify get-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --region=${AWS_REGION} 2> /dev/null)
-    if [[ ! -z  "$branch_exist" ]]; then
+    if [[ ! -z  "$branch_exists" ]]; then
       sh -c "aws amplify create-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME  \
                 ${backend_env_arg} --region=${AWS_REGION}"
       sleep 10
