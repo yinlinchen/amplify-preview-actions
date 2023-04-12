@@ -26,6 +26,12 @@ else
   backend_env_arg=""
 fi
 
+if [[ ! -z "$EnvironmentVariables" ]] ; then
+  environment_variables_arg="--environment-variables=${EnvironmentVariables}"
+else
+  environment_variables_arg=""
+fi
+
 if [ -z "$BRANCH_NAME" ] ; then
   echo "You must provide branch name input parameter in order to deploy"
   exit 1
@@ -47,7 +53,7 @@ case $AMPLIFY_COMMAND in
 
   deploy)
     sh -c "aws amplify create-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME  \
-              ${backend_env_arg} --region=${AWS_REGION}"
+              ${backend_env_arg} ${environment_variables_arg} --region=${AWS_REGION}"
 
     sleep 10
 
