@@ -45,6 +45,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         AmplifyAppId: ${{ secrets.AMPLIFYAPPID }}
         BackendEnvARN: ${{ secrets.BACKENDENVARN }}
+        EnvironmentVariables: 'key1=value,key2=value'
         AWS_REGION: 'us-east-1'
 ```
 
@@ -59,6 +60,7 @@ The following settings must be passed as environment variables as shown in the e
 | `AWS_REGION` | The region where you created your bucket. Set to `us-east-1` by default. [Full list of regions here.](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) | `env` | **Yes** | `us-east-1` |
 | `AmplifyAppId` | The unique ID for an Amplify app. For example, `d6a88fjhifqlks` | `secret env` | **Yes** | N/A |
 | `BackendEnvARN` | The Amazon Resource Name (ARN) for a backend environment that is part of the Amplify app. If the Amplify App has no backend environment, don't set it. | `secret env` | **No** | N/A |
+| `EnvironmentVariables` | The environment variables for the branch. | `env` | **No** | N/A |
 | `GITHUB_TOKEN` | The `GITHUB_TOKEN`, should be supplied if a comment with the preview URL is to be posted on the PR.  GitHub automatically creates a `GITHUB_TOKEN` secret to use in your workflow. You can use it directly, see [About the GITHUB_TOKEN secret](https://docs.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token#about-the-github_token-secret) | `github env` | No | N/A |
 | `NewBackendEnvARN` | The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app. | `secret env` | No | N/A |
 
