@@ -52,10 +52,17 @@ EOF
 case $AMPLIFY_COMMAND in
 
   deploy)
-    sh -c "aws amplify create-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME  \
-              ${backend_env_arg} ${environment_variables_arg} --region=${AWS_REGION}"
+    echo "deploying"
+    branch_exists=$(sh -c "aws amplify get-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --region=${AWS_REGION}")
 
-    sleep 10
+    if [[ -z  "$branch_exists" ]]; then
+      echo "branch_exists is empty"
+      sh -c "aws amplify create-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME  \
+                ${backend_env_arg} ${environment_variables_arg} --region=${AWS_REGION}"
+
+      sleep 10
+    fi
+    echo "starting job"
 
     sh -c "aws amplify start-job --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --job-type=RELEASE --region=${AWS_REGION}"
     ;;
@@ -80,7 +87,7 @@ EOF
 
 if [ -z "$GITHUB_TOKEN" ] ; then
   echo "Skipping comment as GITHUB_TOKEN not provided"
-else 
+else
   SUBDOMAIN_NAME=$(echo $BRANCH_NAME | sed 's/[^a-zA-Z0-9-]/-/')
   curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Preview branch generated at https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com"'" }'
 fi
