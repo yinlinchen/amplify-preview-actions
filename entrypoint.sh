@@ -53,14 +53,14 @@ case $AMPLIFY_COMMAND in
 
   deploy)
     echo "deploying"
-    branch_exists=$(sh -c "aws amplify get-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --region=${AWS_REGION}")
 
-    if [[ -z  "$branch_exists" ]]; then
-      echo "branch_exists is empty"
+    if [[ -z $(aws amplify get-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --region=${AWS_REGION} 2> /dev/null) ]]; then
+      echo "Creating the Amplify branch"
       sh -c "aws amplify create-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME  \
                 ${backend_env_arg} ${environment_variables_arg} --region=${AWS_REGION}"
-
       sleep 10
+    else
+      echo "branch exists, not creating it again"
     fi
     echo "starting job"
 
