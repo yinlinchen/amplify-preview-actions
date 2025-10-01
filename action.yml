@@ -1,25 +1,30 @@
-name: 'amplify-preview-actions'
-description: 'This action builds and deploys your AWS Amplify pull request preview for public repository'
+name: "amplify-preview-actions"
+description: "This action builds and deploys your AWS Amplify pull request preview for github repository"
 inputs:
   branch_name:
-    description: 'GitHub branch name to deploy'
+    description: "GitHub branch name to deploy"
     required: true
   amplify_command:
-    description: 'amplify command: SUPPORTED: [deploy, delete]'
+    description: "amplify command: SUPPORTED: [deploy, delete]"
     required: true
+  stage:
+    description: "amplify stage: SUPPORTED: [PRODUCTION, BETA, DEVELOPMENT, EXPERIMENTAL, PULL_REQUEST]"
+    default: ""
+    required: false
   comments_url:
-    description: 'Github comments url'
+    description: "Github comments url"
     default: "${{ github.event.pull_request.comments_url }}"
     required: false
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
   args:
     - ${{ inputs.branch_name }}
     - ${{ inputs.amplify_command }}
     - ${{ inputs.comments_url }}
+    - ${{ inputs.stage }}
 
 branding:
-  icon: 'git-pull-request'
-  color: 'blue'
+  icon: "git-pull-request"
+  color: "blue"
